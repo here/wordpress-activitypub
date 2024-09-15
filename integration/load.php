@@ -135,6 +135,30 @@ function plugin_init() {
 	 * @see https://wordpress.org/plugins/surge/
 	 */
 	Surge::init();
+
+	/**
+	 * Adds location details
+	 *
+	 * This class adds location details wo WP_Post post types.
+	 *
+	 * @see https://herebox.org/text/activitypub-location-sharing/
+	 */
+	add_filter(
+		'activitypub_transformer',
+		function( $transformer, $object, $object_class ) {
+			if (
+				'WP_Post' === $object_class
+				// \get_post_meta( $object->ID, 'audio_file', true )
+			) {
+				require_once __DIR__ . '/class-arrivals.php';
+				return new Arrivals( $object );
+			}
+			return $transformer;
+		},
+		10,
+		3
+	);
+
 }
 \add_action( 'plugins_loaded', __NAMESPACE__ . '\plugin_init' );
 
