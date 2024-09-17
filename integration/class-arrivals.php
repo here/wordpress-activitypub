@@ -54,9 +54,9 @@ Renders the outgoing json - templates/post-json.php
 	protected function get_location() {
 		return [
             "type" => "Place",
-            "name" => "Los Angeles",
-            "longitude" => "-118.243680",
-            "latitude" => "34.052230",
+            "name" => "WordCamp US",
+            "longitude" => "-122.663228",
+            "latitude" => "45.528283",
             "country" => "USA"
         ];
 	}
